@@ -1,0 +1,17 @@
+#!/bin/bash
+# The logic to start up your application should be put in this
+# script. The application will work only if it binds to
+# $OPENSHIFT_DIY_IP:8080
+set -x
+
+export JAVA_HOME=$OPENSHIFT_DATA_DIR/jdk1.8.0_92
+export PATH=$JAVA_HOME/bin:$PATH
+
+export GRADLE=gradle-3.0
+export GRADLE_HOME=$OPENSHIFT_DATA_DIR/$GRADLE
+export PATH=$GRADLE_HOME/bin:$PATH
+
+cd $OPENSHIFT_REPO_DIR
+
+java -jar server.jar &
+# java -jar build/libs/*.jar &
